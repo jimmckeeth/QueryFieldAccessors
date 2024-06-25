@@ -12,7 +12,7 @@ uses
   FireDAC.Stan.ExprFuncs, FireDAC.Phys.SQLiteWrapper.Stat,
   FireDAC.VCLUI.Wait, Vcl.StdCtrls, Data.DB, FireDAC.Comp.Client,
   FireDAC.Comp.DataSet, FireDAC.Phys.SQLiteVDataSet, Vcl.Samples.Spin,
-  FireDAC.Stan.StorageBin, FireDAC.Comp.UI;
+  FireDAC.Stan.StorageBin, FireDAC.Comp.UI, Vcl.ExtCtrls;
 
 type
   TForm1 = class(TForm)
@@ -36,12 +36,15 @@ type
     FDGUIxWaitCursor1: TFDGUIxWaitCursor;
     FDQuery2: TFDQuery;
     FDQuery2cnt: TLargeintField;
+    Panel1: TPanel;
+    Splitter1: TSplitter;
     procedure btnFieldByNameClick(Sender: TObject);
     procedure btnIndexedFieldsClick(Sender: TObject);
     procedure btnFieldReferencesClick(Sender: TObject);
     procedure btnDesignTimeFieldsClick(Sender: TObject);
     procedure btnGenerateClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormCloseQuery(Sender: TObject; var CanClose: Boolean);
   private
     { Private declarations }
     FStopWatch: TStopWatch;
@@ -62,7 +65,7 @@ uses
   System.Math;
 
 const
-  C_SampleData = 'QueryFieldData.db';
+  C_SampleData = '..\..\QueryFieldData.db';
 
 function GenerateAlienText(CharCount: Integer): string;
 const
@@ -238,6 +241,14 @@ begin
   ListBox2.Items.Add('Count: ' + ListBox3.Count.ToString);
   ListBox2.Items.Add('-----');
   ListBox3.Items.EndUpdate;
+end;
+
+procedure TForm1.FormCloseQuery(Sender: TObject; var CanClose: Boolean);
+begin
+  FDQuery1.Close;
+  FDLocalSQL1.Active := false;
+  FDMemTable1.Close;
+  FDConnection1.Close;
 end;
 
 procedure TForm1.FormCreate(Sender: TObject);

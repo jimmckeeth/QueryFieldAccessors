@@ -2,34 +2,28 @@ object Form1: TForm1
   Left = 0
   Top = 0
   Caption = 'Query Field Accessors Demonstration'
-  ClientHeight = 473
-  ClientWidth = 624
+  ClientHeight = 407
+  ClientWidth = 539
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  OnCloseQuery = FormCloseQuery
   OnCreate = FormCreate
-  DesignSize = (
-    624
-    473)
   TextHeight = 15
-  object btnFieldByName: TButton
-    Left = 8
-    Top = 160
-    Width = 105
-    Height = 41
-    Caption = 'FieldByName'
-    TabOrder = 0
-    OnClick = btnFieldByNameClick
+  object Splitter1: TSplitter
+    Left = 329
+    Top = 0
+    Height = 407
   end
   object ListBox2: TListBox
-    Left = 382
-    Top = 8
-    Width = 234
-    Height = 455
-    Anchors = [akLeft, akTop, akRight, akBottom]
+    Left = 332
+    Top = 0
+    Width = 207
+    Height = 407
+    Align = alClient
     Font.Charset = DEFAULT_CHARSET
     Font.Color = clWindowText
     Font.Height = -16
@@ -37,62 +31,89 @@ object Form1: TForm1
     Font.Style = []
     ItemHeight = 21
     ParentFont = False
-    TabOrder = 1
-  end
-  object btnIndexedFields: TButton
-    Left = 8
-    Top = 207
-    Width = 105
-    Height = 50
-    Caption = 'Fields[index]'
     TabOrder = 2
-    OnClick = btnIndexedFieldsClick
-  end
-  object btnFieldReferences: TButton
-    Left = 8
-    Top = 263
-    Width = 105
-    Height = 49
-    Caption = 'Pre-reference'
-    TabOrder = 3
-    OnClick = btnFieldReferencesClick
-  end
-  object btnDesignTimeFields: TButton
-    Left = 8
-    Top = 318
-    Width = 105
-    Height = 49
-    Caption = 'Design Time Ref'
-    TabOrder = 4
-    OnClick = btnDesignTimeFieldsClick
   end
   object ListBox3: TListBox
-    Left = 128
-    Top = 8
-    Width = 248
-    Height = 453
-    Anchors = [akLeft, akTop, akBottom]
+    Left = 124
+    Top = 0
+    Width = 205
+    Height = 407
+    Align = alLeft
     ItemHeight = 15
-    TabOrder = 5
+    TabOrder = 1
   end
-  object btnGenerate: TButton
-    Left = 8
-    Top = 8
-    Width = 105
-    Height = 49
-    Caption = 'Generate Data'
-    TabOrder = 6
-    OnClick = btnGenerateClick
-  end
-  object SpinEdit1: TSpinEdit
-    Left = 8
-    Top = 64
-    Width = 105
-    Height = 24
-    MaxValue = 5000000
-    MinValue = 1000
-    TabOrder = 7
-    Value = 100000
+  object Panel1: TPanel
+    Left = 0
+    Top = 0
+    Width = 124
+    Height = 407
+    Align = alLeft
+    BevelOuter = bvNone
+    Caption = ' '
+    TabOrder = 0
+    DesignSize = (
+      124
+      407)
+    object btnDesignTimeFields: TButton
+      Left = 8
+      Top = 354
+      Width = 105
+      Height = 49
+      Anchors = [akLeft, akBottom]
+      Caption = 'Design Time Ref'
+      TabOrder = 5
+      OnClick = btnDesignTimeFieldsClick
+    end
+    object btnFieldByName: TButton
+      Left = 8
+      Top = 298
+      Width = 105
+      Height = 50
+      Anchors = [akLeft, akBottom]
+      Caption = 'FieldByName'
+      TabOrder = 4
+      OnClick = btnFieldByNameClick
+    end
+    object btnFieldReferences: TButton
+      Left = 8
+      Top = 188
+      Width = 105
+      Height = 49
+      Anchors = [akLeft, akBottom]
+      Caption = 'Pre-reference'
+      TabOrder = 2
+      OnClick = btnFieldReferencesClick
+    end
+    object btnGenerate: TButton
+      Left = 8
+      Top = 8
+      Width = 105
+      Height = 41
+      Caption = 'Generate Random Data'
+      TabOrder = 0
+      WordWrap = True
+      OnClick = btnGenerateClick
+    end
+    object btnIndexedFields: TButton
+      Left = 8
+      Top = 243
+      Width = 105
+      Height = 50
+      Anchors = [akLeft, akBottom]
+      Caption = 'Fields[index]'
+      TabOrder = 3
+      OnClick = btnIndexedFieldsClick
+    end
+    object SpinEdit1: TSpinEdit
+      Left = 8
+      Top = 55
+      Width = 105
+      Height = 24
+      MaxValue = 5000000
+      MinValue = 1000
+      TabOrder = 1
+      Value = 100000
+    end
   end
   object FDQuery1: TFDQuery
     Connection = FDConnection1
@@ -188,7 +209,6 @@ object Form1: TForm1
   object FDConnection1: TFDConnection
     Params.Strings = (
       'DriverID=SQLite')
-    Connected = True
     LoginPrompt = False
     Left = 296
     Top = 56
